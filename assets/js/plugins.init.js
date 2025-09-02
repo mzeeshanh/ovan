@@ -1,30 +1,3 @@
-/* Template Name: Ovan - Multipurpose HTML5 Template
-   Author: Shreethemes
-   Email: support@bxcwh25lhfkO.in
-   Website: https://bxcwh25lhfkO.in
-   Version: 1.0.0
-   Created: December 2024
-   File Description: Common JS file of the template(plugins.init.js)
-*/
-
-
-/*********************************/
-/*         INDEX                 */
-/*================================
- *     01.  Tiny Slider          *
- *     02.  Data Counter         *
- *     03.  Tobii lightbox       * (For Portfolio pages)
- *     04.  Back Button          *
- *     05.  Accordions           *
- *     06.  Maintenance Js       * (For Maintenance pages)
- *     07.  Countdown Js         * (For Comingsoon pages)
- *     08.  Swiper slider        *
- *     09.  NavTabs              * 
- ================================*/
-         
-//=========================================//
-/*            01) Tiny slider              */
-//=========================================//
 if(document.getElementsByClassName('tiny-one-item').length > 0) {
     var slider = tns({
         container: '.tiny-one-item',
@@ -232,30 +205,23 @@ if(document.getElementsByClassName('tiny-twelve-item').length > 0) {
     });
 };
 
-//=========================================//
-/*/*            02) Data Counter           */
-//=========================================//
 try {
     const counter = document.querySelectorAll('.counter-value');
-    const speed = 2500; // The lower the slower
+    const speed = 2500; 
 
     counter.forEach(counter_value => {
         const updateCount = () => {
             const target = +counter_value.getAttribute('data-target');
             const count = +counter_value.innerText;
 
-            // Lower inc to slow and higher to slow
             var inc = target / speed;
 
             if (inc < 1) {
                 inc = 1;
             }
 
-            // Check if target is reached
             if (count < target) {
-                // Add inc to count and output in counter_value
                 counter_value.innerText = (count + inc).toFixed(0);
-                // Call function every ms
                 setTimeout(updateCount, 1);
             } else {
                 counter_value.innerText = target;
@@ -269,19 +235,12 @@ try {
 }
 
 
-//=========================================//
-/*/*            03) Tobii lightbox         */
-//=========================================//
 
 try {
     const tobii = new Tobii()
 } catch (err) {
 
 }
-
-//=========================================//
-/*/*            07) Gallery filter js      */
-//=========================================//
 
 try {
     var Shuffle = window.Shuffle;
@@ -295,17 +254,12 @@ try {
                     sizer: element.querySelector('.my-sizer-element'),
                 });
 
-                // Log events.
                 this.addShuffleEventListeners();
                 this._activeFilters = [];
                 this.addFilterButtons();
             }
         }
 
-        /**
-         * Shuffle uses the CustomEvent constructor to dispatch events. You can listen
-         * for them like you normally would (with jQuery for example).
-         */
         addShuffleEventListeners() {
             this.shuffle.on(Shuffle.EventType.LAYOUT, (data) => {
                 console.log('layout. data:', data);
@@ -362,9 +316,6 @@ try {
 
 }
 
-//=========================================//
-/*/*            04) Back Button            */
-//=========================================//
 document.getElementsByClassName("back-button")[0]?.addEventListener("click", (e)=>{
     if (document.referrer !== "") {
         e.preventDefault();
@@ -372,9 +323,6 @@ document.getElementsByClassName("back-button")[0]?.addEventListener("click", (e)
       }
 })
 
-//=========================================//
-/*            05) Accordions               */
-//=========================================//
 try {
     const Default = {
         alwaysOpen: false,
@@ -394,7 +342,6 @@ try {
     
         _init() {
             if (this._items.length) {
-                // show accordion item based on click
                 this._items.map(item => {
     
                     if (item.active) {
@@ -415,7 +362,6 @@ try {
         open(id) {
             const item = this.getItem(id)
     
-            // don't hide other accordions if always open
             if (!this._options.alwaysOpen) {
                 this._items.map(i => {
                     if (i !== item) {
@@ -425,7 +371,6 @@ try {
                         i.triggerEl.setAttribute('aria-expanded', false)
                         i.active = false
     
-                        // rotate icon if set
                         if (i.iconEl) {
                             i.iconEl.classList.remove('rotate-180')
                         }
@@ -433,19 +378,16 @@ try {
                 })
             }
     
-            // show active item
             item.triggerEl.classList.add(...this._options.activeClasses.split(" "))
             item.triggerEl.classList.remove(...this._options.inactiveClasses.split(" "))
             item.triggerEl.setAttribute('aria-expanded', true)
             item.targetEl.classList.remove('hidden')
             item.active = true
     
-            // rotate icon if set
             if (item.iconEl) {
                 item.iconEl.classList.add('rotate-180')
             }
     
-            // callback function
             this._options.onOpen(this, item)
         }
     
@@ -458,7 +400,6 @@ try {
                 this.open(id)
             }
     
-            // callback function
             this._options.onToggle(this, item)
         }
     
@@ -471,12 +412,10 @@ try {
             item.triggerEl.setAttribute('aria-expanded', false)
             item.active = false
     
-            // rotate icon if set
             if (item.iconEl) {
                 item.iconEl.classList.remove('rotate-180')
             }
     
-            // callback function
             this._options.onClose(this, item)
         }
     
@@ -514,10 +453,6 @@ try {
     
 }
 
-//=========================================//
-/*/*            06) Maintenance js         */
-//=========================================//
-
 try {
     if(document.getElementById("maintenance")){
         var seconds = 3599;
@@ -542,9 +477,6 @@ try {
 }
 
 
-//=========================================//
-/*            07) Countdown Js             */
-//=========================================//
 try {
     class Countdown {
         initCountDown() {
@@ -552,7 +484,7 @@ try {
             const endMessageElement = document.getElementById("end-message");
     
             if (countdownElement) {
-                // Get the target date from the HTML attribute
+               
                 const targetDate = countdownElement.getAttribute("data-countdown-date");
     
                 if (!targetDate) {
@@ -567,25 +499,21 @@ try {
                     return;
                 }
     
-                // Update the countdown every second
                 const interval = setInterval(() => {
                     const now = new Date().getTime();
                     const timeLeft = eventCountDown - now;
     
                     if (timeLeft > 0) {
-                        // Calculate time units
                         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
                         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     
-                        // Update HTML using data attributes
                         countdownElement.querySelector("[data-days]").textContent = days;
                         countdownElement.querySelector("[data-hours]").textContent = hours;
                         countdownElement.querySelector("[data-minutes]").textContent = minutes;
                         countdownElement.querySelector("[data-seconds]").textContent = seconds;
                     } else {
-                        // When countdown ends
                         clearInterval(interval);
                         countdownElement.style.display = "none";
                         endMessageElement.style.display = "block";
@@ -599,19 +527,14 @@ try {
         }
     }
     
-    // Initialize the countdown
     new Countdown().init();
 } catch (err) {
 
 }
 
-//=========================================//
-/*            08) Swiper slider            */
-//=========================================//
 try {
     var swiper = new Swiper(".mySwiper", {
-        // mousewheel: true,
-        // keyboard: true,
+      
         loop: true,
         speed: 1000,
         parallax: true,
@@ -633,9 +556,6 @@ try {
 }
 
 
-//=========================================//
-/*            09) Navtabs                 */
-//=========================================//
 try {
     const Default = {
         defaultTabId: null,
@@ -654,15 +574,13 @@ try {
     
         _init() {
             if (this._items.length) {
-                // set the first tab as active if not set by explicitly
+                
                 if (!this._activeTab) {
                     this._setActiveTab(this._items[0])
                 }
     
-                // force show the first default tab
                 this.show(this._activeTab.id, true)
     
-                // show tab content based on click
                 this._items.map(tab => {
                     tab.triggerEl.addEventListener('click', () => {
                         this.show(tab.id)
@@ -686,12 +604,9 @@ try {
         show(id, forceShow = false) {
             const tab = this.getTab(id)
     
-            // don't do anything if already active
             if (tab === this._activeTab && !forceShow) {
                 return
             }
-    
-            // hide other tabs
             this._items.map(t => {
                 if (t !== tab) {
                     t.triggerEl.classList.remove(...this._options.activeClasses.split(" "));
@@ -701,7 +616,6 @@ try {
                 }
             })
     
-            // show active tab
             tab.triggerEl.classList.add(...this._options.activeClasses.split(" "));
             tab.triggerEl.classList.remove(...this._options.inactiveClasses.split(" "));
             tab.triggerEl.setAttribute('aria-selected', true)
@@ -709,7 +623,6 @@ try {
     
             this._setActiveTab(tab)
     
-            // callback function
             this._options.onShow(this, tab)
         }
     }
@@ -743,9 +656,6 @@ try {
     
 }
 
-//=========================================//
-/*            08) Upload Profile           */
-//=========================================//
 try {
     var loadFile = function (event) {
         
@@ -757,9 +667,6 @@ try {
     
 }
 
-//=========================================//
-/*            08) Tilt Box Vanilla Js      */
-//=========================================//
 
 try {
     const tilt = document.querySelectorAll(".tilt-box");
@@ -786,9 +693,6 @@ try {
     
 }
 
-//=========================================//
-/*/* 11) Typed Text animation (animation) */
-//=========================================//
 
 try {
     var TxtType = function (el, toRotate, period) {
@@ -839,7 +743,6 @@ try {
                 new TxtType(elements[i], JSON.parse(toRotate), period);
             }
         }
-        // INJECT CSS
         var css = document.createElement("style");
         css.type = "text/css";
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid transparent}";

@@ -4,6 +4,7 @@
 .vis-mis-block{background:rgba(0,0,0,0.1);border-radius:10px;padding:10px;height:100%;}
 .dev-process .vis-mis-block{padding:20px 10px;border-left:4px solid #335eea;border-radius:10px;}
 .back-to-top{position:absolute;right:0;bottom:0;}
+.copyright-text{font-size:14px;}
 @media only screen and (max-width: 719px){
     .service-block{
         flex-direction: column;

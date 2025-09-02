@@ -1,48 +1,18 @@
-/* Template Name: Ovan - Multipurpose HTML5 Template
-   Author: Shreethemes
-   Email: support@bxcwh25lhfkO.in
-   Website: https://bxcwh25lhfkO.in
-   Version: 1.0.0
-   Created: December 2024
-   File Description: Main JS file of the template
-*/
-
-
-/*********************************/
-/*         INDEX                 */
-/*================================
- *     01.  Loader               *
- *     02.  Toggle Menus         *
- *     03.  Active Menu          *
- *     04.  Clickable Menu       *
- *     05.  Menu Sticky          *
- *     06.  Back to top          *
- *     07.  Active Sidebar Menu  *
- *     08.  Small Menu           *
- *     09.  Contact JS           *
- *     10.  Light & Dark Theme   *
- *     11.  LTR & RTL Mode       *
- ================================*/
 
 window.addEventListener('load', fn, false)
 
-//  window.onload = function loader() {
 function fn() {
-    // Preloader
+   
     if (document.getElementById('preloader')) {
         setTimeout(() => {
             document.getElementById('preloader').style.visibility = 'hidden';
             document.getElementById('preloader').style.opacity = '0';
         }, 350);
     }
-    // Menus
+   
     activateMenu();
 }
 
-//Menu
-/*********************/
-/* Toggle Menu */
-/*********************/
 function toggleMenu() {
     document.getElementById('isToggle').classList.toggle('open');
     var isOpen = document.getElementById('navigation')
@@ -52,12 +22,9 @@ function toggleMenu() {
         isOpen.style.display = "block";
     }
 };
-/*********************/
-/*    Menu Active    */
-/*********************/
 function getClosest(elem, selector) {
 
-    // Element.matches() polyfill
+   
     if (!Element.prototype.matches) {
         Element.prototype.matches =
             Element.prototype.matchesSelector ||
@@ -73,7 +40,7 @@ function getClosest(elem, selector) {
             };
     }
 
-    // Get the closest matching element
+   
     for (; elem && elem !== document; elem = elem.parentNode) {
         if (elem.matches(selector)) return elem;
     }
@@ -130,9 +97,6 @@ function activateMenu() {
         }
     }
 }
-/*********************/
-/*  Clickable manu   */
-/*********************/
 if (document.getElementById("navigation")) {
     var elements = document.getElementById("navigation").getElementsByTagName("a");
     for (var i = 0, len = elements.length; i < len; i++) {
@@ -144,9 +108,6 @@ if (document.getElementById("navigation")) {
         }
     }
 }
-/*********************/
-/*   Menu Sticky     */
-/*********************/
 function windowScroll() {
     const navbar = document.getElementById("topnav");
     if (navbar != null) {
@@ -165,9 +126,6 @@ window.addEventListener('scroll', (ev) => {
     ev.preventDefault();
     windowScroll();
 })
-/*********************/
-/*    Back To TOp    */
-/*********************/
 
 window.onscroll = function () {
     scrollFunction();
@@ -191,9 +149,6 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-/*********************/
-/*  Active Sidebar   */
-/*********************/
 (function () {
     var current = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);;
     if (current === "") return;
@@ -205,18 +160,12 @@ function topFunction() {
     }
 })();
 
-/*********************/
-/*     Small Menu    */
-/*********************/
 try {
     var spy = new Gumshoe('#navmenu-nav a');
 } catch (err) {
 
 }
 
-/*********************/
-/*     Contact Form  */
-/*********************/
 
 try {
     function validateForm() {
@@ -278,9 +227,6 @@ try {
     
 }
 
-/*********************/
-/* Dark & Light Mode */
-/*********************/
 try {
     function changeTheme(e){
         e.preventDefault()
@@ -303,9 +249,6 @@ try {
     
 }
 
-/*********************/
-/* LTR & RTL Mode */
-/*********************/
 try{
     const htmlTag = document.getElementsByTagName("html")[0]
     function changeLayout(e){
